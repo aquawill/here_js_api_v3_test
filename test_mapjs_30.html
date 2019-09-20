@@ -5,11 +5,12 @@
   <script src="https://js.api.here.com/v3/3.0/mapsjs-service.js"     type="text/javascript" charset="utf-8"></script>
   <script src="https://js.api.here.com/v3/3.0/mapsjs-mapevents.js"     type="text/javascript" charset="utf-8"></script>
   <script src="https://js.api.here.com/v3/3.0/mapsjs-ui.js"             type="text/javascript" charset="utf-8"></script>
-  <link rel="stylesheet" type="text/css"             href="https://js.api.here.com/v3/3.0/mapsjs-ui.css" />
+  <link rel="stylesheet" type="text/css"	href="https://js.api.here.com/v3/3.0/mapsjs-ui.css" />
   </head>
   <body>
   <div style="width: 100%; height: 100%" id="mapContainer"></div>
   <script>
+  
     // Initialize the platform object:
     var platform = new H.service.Platform({
 	app_id: 'JDuZcEECeUBXGkFT6zp9',
@@ -17,8 +18,17 @@
 	useHTTPS: true
 	});
 
+	
+	var pixelRatio = window.devicePixelRatio || 1;
+	var ppi = pixelRatio === 1 ? 72 : 320
+	var tile_size = pixelRatio === 1 ? 256 : 512
+
+	console.log('pixelRatio: ' + pixelRatio);
+	console.log('ppi: ' + ppi);
+	console.log('tile_size: ' + tile_size);
+
     // Obtain the default map types from the platform object
-    var maptypes = platform.createDefaultLayers(512, 320);
+    var maptypes = platform.createDefaultLayers(tile_size, ppi);
 
     // Instantiate (and display) a map object:
     var map = new H.Map(
@@ -27,7 +37,7 @@
     {
       zoom: 10,
       center: { lng: -88.4946029, lat: 17.5321804 },
-	  pixelRatio: 2
+	  pixelRatio: pixelRatio
     });
 	var ui = H.ui.UI.createDefault(map, maptypes);
   </script>
