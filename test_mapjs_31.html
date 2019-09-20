@@ -1,0 +1,36 @@
+<html>
+  <head>
+  <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+	<script type="text/javascript" charset="UTF-8" src="https://js.api.here.com/v3/3.1/mapsjs-core.js"></script>
+	<script type="text/javascript" charset="UTF-8" src="https://js.api.here.com/v3/3.1/mapsjs-service.js"></script>
+	<script type="text/javascript" charset="UTF-8" src="https://js.api.here.com/v3/3.1/mapsjs-mapevents.js"></script>
+	<script type="text/javascript" charset="UTF-8" src="https://js.api.here.com/v3/3.1/mapsjs-ui.js"></script>
+	<link rel="stylesheet" type="text/css" href="https://js.api.here.com/v3/3.1/mapsjs-ui.css" />
+  </head>
+  <body>
+  <div style="width: 100%; height: 100%" id="mapContainer"></div>
+  <script>
+    // Initialize the platform object:
+    var platform = new H.service.Platform({
+    'apikey': 'Q9xlj7u7mi-hAQwQi1NUIEaDXgj18f5zJ1iI-cuzSyQ'
+    });
+
+    // Obtain the default map types from the platform object
+    var maptypes = platform.createDefaultLayers(512, 320);
+
+    // Instantiate (and display) a map object:
+    var map = new H.Map(
+    document.getElementById('mapContainer'),
+    maptypes.raster.satellite.map,
+    {
+      zoom: 10,
+      center: { lng: -88.4946029, lat: 17.5321804 },
+	  pixelRatio: 2
+    });
+	
+	var ui = H.ui.UI.createDefault(map, maptypes);
+	
+	
+  </script>
+  </body>
+</html>
